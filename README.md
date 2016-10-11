@@ -14,6 +14,12 @@ GeoJSON
 cat data/postleitzahlen.geojson|jq '.features[] | if (.properties.postcode == "80333" or .properties.postcode == "80335") then . else empty end'|jq -s . > ziptofence.json
 ```
 
+## Mapshaper to merge them
+
+```
+mapshaper -i ziptofence.json --dissolve -o format=geojson out.json
+```
+
 # Source
 
 Extracted from [http://www.openstreetmap.org/](OpenStreetMap)
